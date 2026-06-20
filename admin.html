@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Post Announcement — Admin</title>
+<style>
+  :root {
+    --bg: #F4F6FB;
+    --card: #FFFFFF;
+    --ink: #1B2430;
+    --muted: #5C6678;
+    --accent: #2657A8;
+    --good: #1E8E5A;
+    --warn: #C0392B;
+    --border: #E1E5EE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 480px;
+  }
+  h1 {
+    font-size: 19px;
+    margin: 0 0 18px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 14px 0 6px;
+  }
+  input[type="password"],
+  input[type="text"],
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #FBFCFE;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+  button {
+    margin-top: 18px;
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  #msg {
+    margin-top: 12px;
+    font-size: 13px;
+    text-align: center;
+  }
+  #msg.ok { color: var(--good); }
+  #msg.err { color: var(--warn); }
+  #unlockSection, #postSection { display: none; }
+  #unlockSection.show, #postSection.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>📌 Post a Class Announcement</h1>
+
+  <div id="unlockSection" class="show">
+    <label for="pw">Admin password</label>
+    <input type="password" id="pw" placeholder="Enter password" />
+    <button id="unlockBtn">Unlock</button>
+    <div id="unlockMsg"></div>
+  </div>
+
+  <div id="postSection">
+    <label for="author">Posted by</label>
+    <input type="text" id="author" placeholder="e.g. Maria (Class Officer)" />
+
+    <label for="title">Title</label>
+    <input type="text" id="title" placeholder="e.g. Quiz moved to Friday" />
+
+    <label for="body">Details</label>
+    <textarea id="body" placeholder="Write the full announcement here..."></textarea>
+
+    <button id="postBtn">Send to class</button>
+    <div id="msg"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
