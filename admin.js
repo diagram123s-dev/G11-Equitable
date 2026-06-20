@@ -61,9 +61,17 @@ postBtn.addEventListener("click", async () => {
     bodyInput.value = "";
   } catch (err) {
     console.error(err);
-    msgEl.textContent = "Something went wrong. Check your Firebase config.";
+    msgEl.textContent = "Error: " + (err.message || err.code || String(err));
     msgEl.className = "err";
   } finally {
     postBtn.disabled = false;
+  }
+});
+
+// Catch setup errors too (e.g. bad config), so they show on screen
+window.addEventListener("error", (e) => {
+  if (msgEl) {
+    msgEl.textContent = "Setup error: " + e.message;
+    msgEl.className = "err";
   }
 });
